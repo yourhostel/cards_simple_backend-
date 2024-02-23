@@ -38,7 +38,6 @@ build/
 # Spring Boot
 !**/src/main/resources/**
 !**/src/test/resources/**
-*.log
 
 # Ignore Spring Boot specific files
 spring-boot-admin.log
