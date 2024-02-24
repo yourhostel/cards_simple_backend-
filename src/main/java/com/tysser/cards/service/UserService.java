@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import java.sql.Array;
+
 @Service
 public class UserService implements UserDetailsService {
 
@@ -33,7 +35,7 @@ public class UserService implements UserDetailsService {
         User newUser = new User();
         newUser.setUsername(userDto.getUsername());
         newUser.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        // TODO: Set additional properties on the newUser object as needed
+        newUser.setRoles(new String[]{"USER"});
 
         return userRepository.save(newUser);
     }
