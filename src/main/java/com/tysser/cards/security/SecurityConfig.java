@@ -42,7 +42,7 @@ public class SecurityConfig {
 
         http.csrf(AbstractHttpConfigurer::disable);
 
-        // Якщо профіль dev - h2 консоль в браузері використовує iframe - дозволяємо.
+        // If the profile dev. h2 console in the browser uses iframe - we allow it.
         if (Arrays.asList(env.getActiveProfiles()).contains("dev")) {
 
             http.headers(headers -> headers

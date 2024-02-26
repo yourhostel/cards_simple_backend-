@@ -15,18 +15,18 @@ public class VisitDto {
     private String doctorType;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String pressure; // Для CARDIOLOGIST
+    private String pressure; // for CARDIOLOGIST
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String lastVisitDate; // Для DENTIST
+    private String lastVisitDate; // for DENTIST
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Integer age; // Для THERAPIST
+    private Integer age; // for THERAPIST
 
     public VisitDto() {
     }
 
-    // Конструктор копирования
+    // Copy constructor
     public VisitDto(VisitDto source) {
         this.id = source.id;
         this.firstName = source.firstName;

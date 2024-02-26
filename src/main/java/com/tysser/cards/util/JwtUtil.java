@@ -11,6 +11,8 @@ import java.util.Map;
 
 @Component
 public class JwtUtil {
+
+    // TODO: Replaceable with a reliable key
     private final String secret = "your_secret_key";
 
     public String generateToken(UserDetails userDetails) {
