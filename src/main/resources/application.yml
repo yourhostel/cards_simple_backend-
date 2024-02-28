@@ -1,3 +1,7 @@
+custom:
+  cors:
+    allowedOrigins: "http://localhost:63343"
+
 frontend:
   url: ${FRONTEND_URL:http://localhost:3000}
   urlPreview: ${URL_PREVIEW:http://localhost:3000}
