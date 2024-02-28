@@ -12,10 +12,11 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**") // Включает CORS запросы для всех URL.
-                .allowedOrigins(allowedOrigins) // Укажите домен клиентской части, который будет разрешен. Используйте "*" для разрешения всех доменов.
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Разрешенные методы запросов.
-                .allowedHeaders("*") // Разрешенные заголовки.
-                .allowCredentials(true); // Если вам нужно отправлять cookies.
+        System.out.println("Configuring CORS for origin: " + allowedOrigins);
+        registry.addMapping("/**")
+                .allowedOrigins(allowedOrigins)
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedHeaders("*")
+                .allowCredentials(true);
     }
 }

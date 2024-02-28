@@ -1,26 +1,27 @@
 package com.tysser.cards.service;
 
 import com.tysser.cards.dto.VisitDto;
+import com.tysser.cards.exception.InvalidDoctorTypeException;
+import com.tysser.cards.exception.ResourceNotFoundException;
 import com.tysser.cards.model.Visit;
 import com.tysser.cards.model.VisitCardiologist;
 import com.tysser.cards.model.VisitDentist;
 import com.tysser.cards.model.VisitTherapist;
 import com.tysser.cards.repository.VisitRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class VisitService {
 
-    private final VisitRepository visitRepository;
-
     @Autowired
-    public VisitService(VisitRepository visitRepository) {
-        this.visitRepository = visitRepository;
-    }
+    private final VisitRepository visitRepository;
 
     @Transactional
     public Visit createOrUpdateVisit(VisitDto visitDto, Optional<Long> id) {
@@ -29,7 +30,7 @@ public class VisitService {
                 case "CARDIOLOGIST" -> new VisitCardiologist();
                 case "DENTIST" -> new VisitDentist();
                 case "THERAPIST" -> new VisitTherapist();
-                default -> throw new IllegalArgumentException("Invalid doctor type");
+                default -> throw new InvalidDoctorTypeException("Invalid doctor type: " + visitDto.getDoctorType());
             };
         });
 
@@ -55,11 +56,17 @@ public class VisitService {
     public Visit findById(Long id) {
         return visitRepository
                 .findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Visit not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Visit not found"));
     }
 
     @Transactional
     public void deleteVisit(Long id) {
         visitRepository.deleteById(id);
     }
+
+    @Transactional(readOnly = true)
+    public List<Visit> getAllVisits() {
+        return visitRepository.findAll();
+    }
+
 }

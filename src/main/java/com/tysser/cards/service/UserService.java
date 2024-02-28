@@ -6,26 +6,25 @@ import com.tysser.cards.exception.UserAlreadyExistException;
 import com.tysser.cards.model.User;
 import com.tysser.cards.repository.UserRepository;
 import com.tysser.cards.util.JwtUtil;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import java.sql.Array;
-
 @Service
+@AllArgsConstructor
 public class UserService implements UserDetailsService {
 
+    @Autowired
     private final UserRepository userRepository;
+    @Autowired
     private final PasswordEncoder passwordEncoder;
+    @Autowired
     private final JwtUtil jwtUtil;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtUtil jwtUtil) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.jwtUtil = jwtUtil;
-    }
 
     public User registerNewUserAccount(UserDto userDto) {
         if (userRepository.findByUsername(userDto.getUsername()).isPresent()) {
@@ -61,6 +60,7 @@ public class UserService implements UserDetailsService {
                 // TODO: Set roles and authorities for the user if needed
                 .build();
     }
+
 }
 
 

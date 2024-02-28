@@ -42,6 +42,7 @@ public class JwtRequestFilter extends OncePerRequestFilter implements Applicatio
                                     @NonNull HttpServletResponse response,
                                     @NonNull FilterChain chain)
             throws ServletException, IOException {
+        try {
         if (isRequestForProtectedResource(request)) {
             final String authorizationHeader = request.getHeader("Authorization");
 
@@ -67,6 +68,10 @@ public class JwtRequestFilter extends OncePerRequestFilter implements Applicatio
             }
         }
         chain.doFilter(request, response);
+        } catch (Exception e) {
+            logger.error("An error occurred processing the request" + e.getMessage());
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An internal error occurred");
+        }
     }
 
     private boolean isRequestForProtectedResource(HttpServletRequest request) {

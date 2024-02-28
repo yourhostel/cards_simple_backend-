@@ -3,6 +3,7 @@ package com.tysser.cards.controller;
 import com.tysser.cards.dto.VisitDto;
 import com.tysser.cards.model.Visit;
 import com.tysser.cards.service.VisitService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,19 +15,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/api/visits")
 public class VisitController {
 
-    private final VisitService visitService;
-
     @Autowired
-    public VisitController(VisitService visitService) {
-        this.visitService = visitService;
-    }
+    private final VisitService visitService;
 
     @PostMapping
     public ResponseEntity<Visit> createVisit(@RequestBody VisitDto visitDto) {
@@ -54,4 +53,11 @@ public class VisitController {
         visitService.deleteVisit(id);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping
+    public ResponseEntity<List<Visit>> getAllVisits() {
+        List<Visit> visits = visitService.getAllVisits();
+        return ResponseEntity.ok(visits);
+    }
+
 }
