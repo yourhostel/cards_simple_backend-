@@ -56,4 +56,5 @@ public class VisitDto {
         this.visitDentistDate = source.visitDentistDate;
         this.therapistAge = source.therapistAge;
     }
+
 }
