@@ -1,5 +1,8 @@
 package com.tysser.cards.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tysser.cards.dto.ResponseVisit;
 import com.tysser.cards.dto.VisitDto;
 import com.tysser.cards.model.Visit;
 import com.tysser.cards.service.VisitService;
@@ -28,22 +31,23 @@ public class VisitController {
     private final VisitService visitService;
 
     @PostMapping
-    public ResponseEntity<Visit> createVisit(@RequestBody VisitDto visitDto) {
-        Visit savedVisit = visitService
+    public ResponseEntity<ResponseVisit> createVisit(@RequestBody VisitDto visitDto) {
+        System.out.println(visitDto);
+        ResponseVisit savedVisit = visitService
                 .createOrUpdateVisit(visitDto, Optional.empty());
         return ResponseEntity.ok(savedVisit);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Visit> getVisit(@PathVariable Long id) {
-        Visit visit = visitService.findById(id);
+    public ResponseEntity<VisitDto> getVisit(@PathVariable Long id) {
+        VisitDto visit = visitService.findById(id);
         return ResponseEntity.ok(visit);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Visit> updateVisit(@PathVariable Long id,
+    public ResponseEntity<ResponseVisit> updateVisit(@PathVariable Long id,
                                              @RequestBody VisitDto visitDto) {
-        Visit updatedVisit = visitService
+        ResponseVisit updatedVisit = visitService
                 .createOrUpdateVisit(visitDto, Optional.of(id));
         return ResponseEntity.ok(updatedVisit);
     }
@@ -55,8 +59,8 @@ public class VisitController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Visit>> getAllVisits() {
-        List<Visit> visits = visitService.getAllVisits();
+    public ResponseEntity<List<VisitDto>> getAllVisits() {
+        List<VisitDto> visits = visitService.getAllVisits();
         return ResponseEntity.ok(visits);
     }
 

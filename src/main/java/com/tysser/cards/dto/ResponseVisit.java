@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class VisitDto {
+public class ResponseVisit {
     private Long id;
     private String firstName;
     private String surname;
@@ -34,26 +34,4 @@ public class VisitDto {
     // for THERAPIST
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer therapistAge;
-
-    public VisitDto() {
-    }
-
-    // Copy constructor
-    public VisitDto(VisitDto source) {
-        this.id = source.id;
-        this.firstName = source.firstName;
-        this.surname = source.surname;
-        this.middleName = source.middleName;
-        this.goal = source.goal;
-        this.description = source.description;
-        this.statusVisit = source.statusVisit;
-        this.doctor = source.doctor;
-        this.categoryVisit = source.categoryVisit;
-        this.pressure = source.pressure;
-        this.cardiologistAge = source.cardiologistAge;
-        this.previousDiseas = source.previousDiseas;
-        this.bmi = source.bmi;
-        this.visitDentistDate = source.visitDentistDate;
-        this.therapistAge = source.therapistAge;
-    }
 }

@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @EqualsAndHashCode(callSuper = true)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "doctor_type", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "doctor", discriminatorType = DiscriminatorType.STRING)
 public abstract class Visit extends AbstractFields {
 
     @Column(name = "first_name")
@@ -31,7 +31,10 @@ public abstract class Visit extends AbstractFields {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "status_visit", columnDefinition = "BOOLEAN")
-    private boolean statusVisit;
+    @Column(name = "status_visit")
+    private String statusVisit;
+
+    @Column(name = "category_visit")
+    private String categoryVisit;
 
 }

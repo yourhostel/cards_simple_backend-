@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class VisitTherapist extends Visit {
 
-    @Column(name = "age")
-    private int age;
+    @Column(name = "therapist_age")
+    private int therapistAge;
 
 }

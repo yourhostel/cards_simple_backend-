@@ -16,4 +16,12 @@ public class VisitCardiologist extends Visit {
     @Column(name = "pressure")
     private String pressure;
 
+    @Column(name = "cardiologist_age")
+    private int cardiologistAge;
+
+    @Column(name = "previous_diseas")
+    private String previousDiseas;
+
+    @Column(name = "BMI")
+    private String BMI;
 }

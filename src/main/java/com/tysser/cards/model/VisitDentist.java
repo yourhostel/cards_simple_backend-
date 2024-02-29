@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class VisitDentist extends Visit {
 
-    @Column(name = "last_visit_date")
-    private String lastVisitDate;
+    @Column(name = "visit_dentist_date")
+    private String visitDentistDate;
 
 }
