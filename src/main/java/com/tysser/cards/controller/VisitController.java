@@ -1,10 +1,7 @@
 package com.tysser.cards.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tysser.cards.dto.ResponseVisit;
 import com.tysser.cards.dto.VisitDto;
-import com.tysser.cards.model.Visit;
 import com.tysser.cards.service.VisitService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
