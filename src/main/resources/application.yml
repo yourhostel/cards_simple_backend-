@@ -2,11 +2,8 @@ custom:
   cors:
     allowedOrigins: "http://localhost:63343"
 
-frontend:
-  url: ${FRONTEND_URL:http://localhost:3000}
-  urlPreview: ${URL_PREVIEW:http://localhost:3000}
 server:
-  port: ${SERVER_PORT:9090}
+  port: ${SERVER_PORT:9797}
 
 logging:
   level:
@@ -32,7 +29,6 @@ spring:
       hibernate.format_sql: "false"
     hibernate:
       ddl-auto: update
-    database-platform: org.hibernate.dialect.H2Dialect
     defer-datasource-initialization: true
     jdbc:
       time_zone: UTC
