@@ -1,6 +1,6 @@
 custom:
   cors:
-    allowedOrigins: "http://localhost:63343"
+    allowedOrigins: "http://localhost:63344"
 
 server:
   port: ${SERVER_PORT:9797}
